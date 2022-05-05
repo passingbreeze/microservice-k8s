@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  frontend:
+    build: ./factory-front
+    restart: always
+    expose:
+      - 3000
+    ports:
+      - 8080:3000
+
+    # depends_on:
+    #   - backend
+
+  # backend:
+  #   build: ./factory-server

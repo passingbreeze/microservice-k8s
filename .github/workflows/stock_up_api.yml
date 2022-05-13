@@ -1,4 +1,4 @@
-name: Build Store API Server and push image to Amazon ECR
+name: Build Store Stock UP API and Push Image to Amazon ECR
 
 on:
   push:
@@ -33,9 +33,9 @@ jobs:
       id: build-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_NAME: STORE_API_SERVER
+        IMAGE_NAME: STORE_STOCKUP
         IMAGE_TAG: latest
       run: |
-        docker build -t $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG .
+        docker build -t $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG ./stock-up-api
         docker push $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG
         echo "::set-output name=image::$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG"

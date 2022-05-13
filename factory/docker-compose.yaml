@@ -5,9 +5,9 @@ services:
     build: ./factory-front
     restart: always
     expose:
-      - 3000
+      - 8080
     ports:
-      - 8080:3000
+      - 8080:8080
     depends_on:
       - backend
     links:
@@ -19,4 +19,4 @@ services:
     expose:
       - 4000
     ports:
-      - 8000:4000
+      - 4000:4000

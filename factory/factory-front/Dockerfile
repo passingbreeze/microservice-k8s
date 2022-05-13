@@ -1,7 +1,6 @@
 FROM --platform=amd64 node:16-alpine
 WORKDIR /front
-EXPOSE 3000
-COPY package*.json ./
-RUN npm ci
+EXPOSE 8080
 COPY . .
-CMD npm run dev --host "0.0.0.0"
+RUN npm ci
+CMD npm run start --host "0.0.0.0"

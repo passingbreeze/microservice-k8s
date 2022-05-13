@@ -20,19 +20,3 @@ services:
       - 4000
     ports:
       - 8000:4000
-  # db:
-  #   image: mariadb:10.7
-  #   restart: always
-  #   ports:
-  #     - 3306:3306
-  #   expose:
-  #     - 3306
-  #   volumes:
-  #     - ./database:/var/lib/mysql
-  #     - ./factory-db:/docker-entrypoint-initdb.d:ro
-  #   # - ./internal/db/conf.d:/etc/mysql/conf.d:ro
-  #   environment:
-  #     - MARIADB_DATABASE=factory
-  #     - MARIADB_ROOT_PASSWORD=factoryadmin
-  #     - MARIADB_USER=root
-  #     - MARIADB_MYSQL_LOCALHOST_USER=1

@@ -9,14 +9,17 @@ $: items = fetch(`${process.env.SERVER_URL}/manufactures`)
     </div>
     <h2 class="factory_process"> 공장 생산 진행상태</h2>
     <table class="productTable">
-        <tr>
-            <th class="headTitle">PID</th>
-            <th class="headTitle">Requester</th>
-            <th class="headTitle">code</th>
-            <th class="headTitle">msg</th>
-            <th class="headTitle">Callback</th>
-            <th class="headTitle">action</th>
-        </tr>
+        <thead class="headTitle">
+            <tr>
+                <th>PID</th>
+                <th>Requester</th>
+                <th>code</th>
+                <th>msg</th>
+                <th>Callback</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        
     </table>    
 </div>
 

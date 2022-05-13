@@ -1,0 +1,27 @@
+{
+  "name": "sell-apis",
+  "version": "1.0.0",
+  "description": "sell daughnoughts",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/passingbreeze/microservice-k8s.git"
+  },
+  "keywords": [
+    "sell-apis"
+  ],
+  "author": "passingbreeze",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/passingbreeze/microservice-k8s/issues"
+  },
+  "homepage": "https://github.com/passingbreeze/microservice-k8s#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "fastify": "^3.29.0",
+    "mysql2": "^2.3.3"
+  }
+}

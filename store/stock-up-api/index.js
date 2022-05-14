@@ -4,6 +4,13 @@ const fastify = require('fastify')({
   logger: true
 });
 
+fastify.get("/status", async (req, res) => {
+  res.type('application/json').code(200)
+  return {
+    message: 'ok!'
+  }
+})
+
 fastify.post("/", async (req, res) => {
   console.log(typeof req.body, req.body);
   const eventBody = JSON.parse(req.body);

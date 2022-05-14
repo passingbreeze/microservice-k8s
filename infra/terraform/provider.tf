@@ -1,4 +1,4 @@
 provider "aws" {
-  profile = "kakao"
-  region  = "ap-northeast-2"
+  profile = var.aws_profile
+  region  = var.aws_region
 }

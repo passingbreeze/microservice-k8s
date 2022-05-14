@@ -1,5 +1,5 @@
 terraform {
-  requried_version = ">= 1.0.0"
+  required_version = ">= 1.0.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -7,8 +7,10 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "redis-messageq-kube"
+    bucket = "msgq-microservice-kube"
     key = "msgq/v1/kube.tfstate"
-    region = "ap-northeast-2"    
+    region = "ap-northeast-2"   
+    dynamodb_table = "msgq-msv-kube-table"
+    encrypt = true 
   }
 }

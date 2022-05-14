@@ -21,7 +21,7 @@ app.post("/send", async (req, res) => { // POST 람다 주소/send
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB_DBNAME,
-        port: 3306
+        port: process.env.DB_PORT
       });
       const [rows, fields] = await dbcon.query(
         `SELECT BIN_TO_UUID(product_id) as product_id
@@ -80,10 +80,13 @@ app.post("/send", async (req, res) => { // POST 람다 주소/send
     }
   })
 
-app.listen({ port: process.env.PORT, host: process.env.HOST }, (err, address) => {
-    if (err) {
-        app.log.error(err)
-        process.exit(1)
+  const server = async () => {
+    try {
+      await app.listen(process.env.SERVER_PORT)   
+    } catch (error) {
+      app.log.error(err);
+      process.exit(1);
     }
-    app.log.info(`Server is now listening on ${address}`)
-})
+  }
+  
+  server()

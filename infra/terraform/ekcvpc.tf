@@ -46,7 +46,7 @@ resource "aws_subnet" "private_subnet_1c" {
 resource "aws_internet_gateway" "eksigw" {
     vpc_id = aws_vpc.vpc-for-eks.id
     tags = {
-        Name = "Internet-Gateway-Sprint"
+        Name = "EKS-Internet-Gateway"
     }
 }
 

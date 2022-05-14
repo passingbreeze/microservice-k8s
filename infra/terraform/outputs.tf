@@ -63,5 +63,5 @@ output "kubeconfig" {
 }
 
 output "ecr_uri" {
-  value = aws_ecrpublic_repository.store-repos.repository_uri
+  value = aws_ecr_repository.store-repos.repository_url
 }

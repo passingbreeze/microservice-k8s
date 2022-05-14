@@ -6,6 +6,10 @@ variable "aws_region" {
   default = "ap-northeast-2"
 }
 
+variable "cluster_name" {
+    default = "eks-store"
+}
+
 variable "http_port" {
     default = 80
 }

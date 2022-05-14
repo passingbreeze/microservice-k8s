@@ -30,11 +30,22 @@ resource "aws_security_group" "eks-sg" {
         from_port = var.db_port
         to_port = var.db_port
         protocol = "tcp"
-        security_groups = [aws_security_group.eks-sg.arn]
-        self = false
+        security_groups = []
+        self = true
         prefix_list_ids = []
         cidr_blocks = []
         ipv6_cidr_blocks = []
+    },
+    {
+        description = "SSH inbound to EKS"
+        from_port = var.ssh_port
+        to_port = var.ssh_port
+        protocol = "tcp"
+        security_groups = []
+        self = false
+        prefix_list_ids = []
+        cidr_blocks = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
     },
     ]
 

@@ -50,7 +50,7 @@ users:
       args:
         - "token"
         - "-i"
-        - "${var.cluster-name}"
+        - "${var.cluster_name}"
 KUBECONFIG
 }
 
@@ -60,4 +60,8 @@ output "config_map_aws_auth" {
 
 output "kubeconfig" {
   value = local.kubeconfig
+}
+
+output "ecr_uri" {
+  value = aws_ecrpublic_repository.store-repos.repository_uri
 }

@@ -62,6 +62,6 @@ output "kubeconfig" {
   value = local.kubeconfig
 }
 
-output "ecr_uri" {
+output "ecr_url" {
   value = aws_ecr_repository.store-repos.repository_url
 }

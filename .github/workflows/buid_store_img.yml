@@ -33,42 +33,38 @@ jobs:
       id: build-stock-up-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        IMAGE_NAME: store_stockup
-        IMAGE_TAG: latest
+        IMAGE_TAG: store_stockup
       run: |
-        docker build -t $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG ./store/stock-up-api
-        docker push $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG"
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./store/stock-up-api
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     
     - name: Build, tag, and push store-sell-api image to Amazon ECR
       id: build-store-sell-image
       env:
          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-         IMAGE_NAME: store_api
-         IMAGE_TAG: latest
+         IMAGE_TAG: store_api
       run: |
-         docker build -t $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG ./store/store-sell-api
-         docker push $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG
-         echo "::set-output name=image::$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG"
+         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./store/store-sell-api
+         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     - name: Build, tag, and push store-db image to Amazon ECR
       id: build-store-db-image
       env:
          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-         IMAGE_NAME: store_db
-         IMAGE_TAG: latest
+         IMAGE_TAG: store_db
       run: |
-         docker build -t $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG ./store/store-db
-         docker push $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG
-         echo "::set-output name=image::$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG"
+         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./store/store-db
+         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     
     - name: Build, tag, and push store-empty-to-factory image to Amazon ECR
       id: build-store-empty-to-factory-image
       env:
          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-         IMAGE_NAME: store_empty_to_factory
-         IMAGE_TAG: latest
+         IMAGE_TAG: store_empty_to_factory
       run: |
-         docker build -t $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG ./store/stock-empty-to-factory
-         docker push $ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG
-         echo "::set-output name=image::$ECR_REGISTRY/$IMAGE_NAME:$IMAGE_TAG"
+         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG ./store/stock-empty-to-factory
+         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"

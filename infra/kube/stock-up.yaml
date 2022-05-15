@@ -21,6 +21,7 @@ spec:
         ports:
         - containerPort: 8888
           name: stock-up-api
+        command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
         livenessProbe:
           httpGet:
             path: /status

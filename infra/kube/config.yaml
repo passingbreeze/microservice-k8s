@@ -4,10 +4,11 @@ metadata:
   name: store-configmap
 data:
   DB_USER: root
-  DB_HOST: "10.101.106.77"
+  DB_HOST: store.db
   DB_DBNAME: store
+  DB_PASSWORD: ""
   DB_PORT: "3306"
-  REDIS_HOST: "10.98.166.116"
+  REDIS_HOST: store.msgq
   REDIS_PORT: "6379"
   REDIS_USER: store
   REDIS_PASSWORD: store

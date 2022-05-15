@@ -23,3 +23,4 @@ spec:
         ports:
         - containerPort: 6666
           name: stock-empty
+        command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]

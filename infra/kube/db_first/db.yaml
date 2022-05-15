@@ -30,7 +30,7 @@ spec:
           periodSeconds: 20
   volumeClaimTemplates:
     - metadata:
-        name: store-db-pvc
+        name: store-db-volume
       spec:
         accessModes:
         - ReadWriteOnce

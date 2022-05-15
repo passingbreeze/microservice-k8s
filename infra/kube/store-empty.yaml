@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-empty-to-factory
+spec:
+  selector:
+    matchLabels:
+      app: stock-empty-to-factory
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: stock-empty-to-factory
+    spec:
+      containers:
+      - image: jungmin1237/stock-empty-to-factory:1.0
+        name: stock-empty-to-factory
+        envFrom:
+        - configMapRef:
+            name: store-configmap
+        - secretRef:
+            name: store-secret
+        ports:
+        - containerPort: 6666
+          name: stock-empty

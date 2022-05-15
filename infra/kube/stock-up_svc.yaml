@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: stock-up-api
+spec:
+  type: NodePort
+  ports:
+  - name: stock-up-port
+    protocol: "TCP"
+    port: 8888
+    targetPort: 8888
+  selector:
+    app: stock-up-api

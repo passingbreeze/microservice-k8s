@@ -48,7 +48,7 @@ fastify.post("/", async (req, res) => {
 
 const server = async () => {
   try {
-    await fastify.listen(process.env.PORT)   
+    await fastify.listen(process.env.STOCKUP_PORT, '0.0.0.0')   
   } catch (error) {
     fastify.log.error(err);
     process.exit(1);

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: store-msgq
+spec:
+  type: ClusterIP
+  ports:
+  - name: store-msgq-port
+    protocol: "TCP"
+    port: 6379
+    targetPort: 6379
+  selector:
+    app: store-msgq

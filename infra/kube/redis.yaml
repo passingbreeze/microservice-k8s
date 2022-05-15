@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: store-msgq
+spec:
+  selector:
+    matchLabels:
+      app: store-msgq
+  template:
+    metadata:
+      labels:
+        app: store-msgq
+    spec:
+      containers:
+      - image: jungmin1237/store-msgq:1.0
+        name: store-msgq
+        ports:
+        - containerPort: 6379
+          name: store-msgq
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 15
+          periodSeconds: 20

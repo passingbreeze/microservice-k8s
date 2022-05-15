@@ -47,10 +47,7 @@ ALTER TABLE `product` ADD CONSTRAINT `fk_product_ad_id` FOREIGN KEY(`ad_id`)
 REFERENCES `advertisement` (`ad_id`);
 
 
-
-
 INSERT INTO factory(factory_id, identifier, name, manager_email, api) VALUES(UUID_TO_BIN(UUID()),'FF-500293','부산도너츠 공장', 'dob_factory@codeatates.com', '');
-
 
 INSERT INTO advertisement(ad_id, status, manager_email) VALUES(UUID_TO_BIN(UUID()),true, 'dob_ad@codeatates.com');
 
@@ -66,6 +63,3 @@ FROM advertisement);
 INSERT INTO product(product_id, sku, name, price, stock, factory_id, ad_id)
 VALUES(UUID_TO_BIN(UUID()),'CP-502101','부산도너츠', 19900, 3, UUID_TO_BIN(@factory_uuid),
 UUID_TO_BIN(@adv_uuid));
-''
-
-

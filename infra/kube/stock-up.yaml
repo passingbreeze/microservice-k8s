@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: stock-up-api
+spec:
+  selector:
+    matchLabels:
+      app: stock-up-api
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: stock-up-api
+    spec:
+      containers:
+      - image: jungmin1237/stock-up-api:1.0
+        name: stock-up-api
+        envFrom:
+        - configMapRef:
+            name: store-configmap
+        ports:
+        - containerPort: 8888
+          name: stock-up-api
+        livenessProbe:
+          httpGet:
+            path: /status
+            port: 8888
+            scheme: HTTP
+          initialDelaySeconds: 15
+          periodSeconds: 20

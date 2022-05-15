@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: store-db
+spec:
+  selector:
+    matchLabels:
+      app: store-db
+  serviceName: store-db
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: store-db
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: store-db
+        image: jungmin1237/store-db:1.0
+        ports:
+          - containerPort: 3306
+            name: store-db
+        volumeMounts:
+          - mountPath: ./database
+            name: store-db-volume
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+          initialDelaySeconds: 15
+          periodSeconds: 20
+  volumeClaimTemplates:
+    - metadata:
+        name: store-db-pvc
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 2Gi
+        storageClassName: standard
+    
+        
+    

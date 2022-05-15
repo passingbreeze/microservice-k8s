@@ -1,18 +1,19 @@
 require('dotenv').config()
-const app = require('fastify')({
+const fastify = require('fastify')({
     logger: true
 })
-const { default: fastify } = require('fastify');
-const mysql = require("mysql2/promise");
+const redis = require('redis')
+const mysql = require("mysql2/promise")
   
-app.get("/status", async (req, res) => {
+
+fastify.get("/status", async (req, res) => {
     res.type('application/json').code(200)
     return {
       message: 'ok!'
     }
 })
 
-app.post("/send", async (req, res) => { // POST 람다 주소/send
+fastify.post("/send", async (req, res) => { // POST 람다 주소/send
     console.log("request body:", req.body);
     try {
       const dbcon = await mysql.createConnection({
@@ -44,12 +45,14 @@ app.post("/send", async (req, res) => { // POST 람다 주소/send
         }
       } else {
         console.log("재고 부족 상황!!")
+        const msgq = redis.createClient({
+          url: `redis://${process.env.REDIS_USER}:${process.env.REDIS_PASSWORD}@${process.env.REDIS_HOST}:${process.env.REDIS_PORT}`
+        });
+        await msgq.connect();
+
         const now = new Date().toString();
-        const snsMsg = `${req.body.message}, This was sent: ${now}`;
-        const snsParams = {
-          Message: snsMsg,
-          MessageGroupId: req.body.MessageGroupId,
-          MessageDeduplicationId: new Date().getTime().toString(),
+        const msgs = {
+          Message: `${req.body.message}, This was sent: ${now}`,
           Subject: req.body.subject,
           MessageAttributes: {
             ProductId: {
@@ -60,11 +63,11 @@ app.post("/send", async (req, res) => { // POST 람다 주소/send
               StringValue: req.body.MessageAttributeFactoryId,
               DataType: "String",
             },
-          },
-          TopicArn: process.env.SNS_TOPIC_ARN
+          }
         };
   
-        const publishedResult = await sns.publish(snsParams).promise()
+        // const publishedResult = await sns.publish(snsParams).promise()
+        const publishedResult = await msgq.publish('store', msgs)
         console.log("published result:", publishedResult)
         res.type('application/json').code(200)
         return {
@@ -82,9 +85,9 @@ app.post("/send", async (req, res) => { // POST 람다 주소/send
 
   const server = async () => {
     try {
-      await app.listen(process.env.SERVER_PORT)   
+      await fastify.listen(process.env.STORE_SERVER_PORT, '0.0.0.0')   
     } catch (error) {
-      app.log.error(err);
+      fastify.log.error(err);
       process.exit(1);
     }
   }

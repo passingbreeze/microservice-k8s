@@ -12,7 +12,7 @@ spec:
         app: store-msgq
     spec:
       containers:
-      - image: jungmin1237/store-msgq:1.0
+      - image: jungmin1237/store-msgq:1.6
         name: store-msgq
         ports:
         - containerPort: 6379

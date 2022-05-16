@@ -4,14 +4,12 @@ metadata:
   name: store-configmap
 data:
   DB_USER: root
-  DB_HOST: store.db
+  DB_HOST: "10.100.209.193"
   DB_DBNAME: store
-  DB_PASSWORD: ""
   DB_PORT: "3306"
-  REDIS_HOST: store.msgq
+  REDIS_HOST: "10.103.15.39"
   REDIS_PORT: "6379"
-  REDIS_USER: store
-  REDIS_PASSWORD: store
   STORE_SERVER_PORT: "7777"
   STOCKUP_PORT: "8888"
-  FACTORY_URL: http://factory.p3.api.codestates-devops.be:8080
+  FACTORY_URL: http://factory.p3.api.codestates-devops.be:8080/api/manufactures
+  CALLBACK_URL: http://10.98.38.63:8888/arrival

@@ -6,14 +6,13 @@ spec:
   selector:
     matchLabels:
       app: stock-empty-to-factory
-  replicas: 2
   template:
     metadata:
       labels:
         app: stock-empty-to-factory
     spec:
       containers:
-      - image: jungmin1237/stock-empty-to-factory:1.0
+      - image: jungmin1237/stock-empty-to-factory:2.7.5
         name: stock-empty-to-factory
         envFrom:
         - configMapRef:
@@ -23,4 +22,3 @@ spec:
         ports:
         - containerPort: 6666
           name: stock-empty
-        command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]

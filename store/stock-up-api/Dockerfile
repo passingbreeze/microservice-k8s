@@ -1,7 +1,7 @@
 FROM --platform=amd64 node:16-alpine
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci
+ENV STOCKUP_PORT=8888
 COPY . .
-EXPOSE 8888
+RUN npm ci
+EXPOSE ${STOCKUP_PORT}
 CMD npm run start

@@ -1,31 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: stock-up-api
+  name: store-sell-api
 spec:
   selector:
     matchLabels:
-      app: stock-up-api
-  replicas: 2
+      app: store-sell-api
+  replicas: 4
   template:
     metadata:
       labels:
-        app: stock-up-api
+        app: store-sell-api
     spec:
       containers:
-      - image: jungmin1237/stock-up-api:1.0
-        name: stock-up-api
+      - image: jungmin1237/store-sell-api:2.2
+        name: store-sell-api
         envFrom:
         - configMapRef:
             name: store-configmap
+        - secretRef:
+            name: store-secret
         ports:
-        - containerPort: 8888
-          name: stock-up-api
-        command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
+        - containerPort: 7777
+          name: store-sell-api
         livenessProbe:
           httpGet:
             path: /status
-            port: 8888
+            port: 7777
             scheme: HTTP
           initialDelaySeconds: 15
           periodSeconds: 20

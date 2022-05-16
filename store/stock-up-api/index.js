@@ -1,4 +1,3 @@
-"use strict";
 const mysql = require('mysql2/promise');
 const fastify = require('fastify')({
   logger: true
@@ -11,9 +10,9 @@ fastify.get("/status", async (req, res) => {
   }
 })
 
-fastify.post("/", async (req, res) => {
+fastify.post("/arrival", async (req, res) => {
   console.log(typeof req.body, req.body);
-  const eventBody = JSON.parse(req.body);
+  const eventBody = req.body
   const productCnt = eventBody.MessageAttributeProductCnt;
   const productID = eventBody.MessageAttributeProductId;
   console.log(typeof productCnt, productCnt);
@@ -49,7 +48,7 @@ fastify.post("/", async (req, res) => {
 const server = async () => {
   try {
     await fastify.listen(process.env.STOCKUP_PORT, '0.0.0.0')   
-  } catch (error) {
+  } catch (err) {
     fastify.log.error(err);
     process.exit(1);
   }

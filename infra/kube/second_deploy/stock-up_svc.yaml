@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: stock-up-api
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - name: stock-up-port
     protocol: "TCP"

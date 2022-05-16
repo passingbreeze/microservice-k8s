@@ -5,9 +5,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - name: stock-empty-to-factory
-    protocol: "TCP"
-    port: 6666
-    targetPort: 6666
+    - port: 6666
+      targetPort: 6666
+      name: empty-node-port
   selector:
     app: stock-empty-to-factory

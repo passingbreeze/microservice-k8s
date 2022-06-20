@@ -3,7 +3,7 @@ name: Build Store APIs and Push Image to Amazon ECR
 on:
   push:
     branches:
-      - master
+      - production
 
 env:
   AWS_REGION: ap-northeast-2

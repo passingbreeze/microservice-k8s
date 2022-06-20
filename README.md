@@ -14,7 +14,7 @@ Redis를 Message Queue로 하여 Message Queue로 Microservice Architecture를 �
 
 1. Local
     - Kubernetes와 minikube를 설치합니다.
-    - `kubectl apply -f infra/kube/first_deploy` -> `kubectl apply -f infra/kube/second_deploy` 순으로 입력해서 애플리케이션을 설치합니다.
+    - 루트 위치에서 `kubectl apply -f infra/kube/first_deploy` -> `kubectl apply -f infra/kube/second_deploy` -> `kubectl apply -f infra/kube/third_deploy` 순으로 입력해서 애플리케이션을 설치합니다.
 2. On AWS EKS : 70% 완성, AWS EKS 테라폼 인프라는 구축되었습니다.
     - Terraform과 AWS-CLI 그리고 eksctl을 설치합니다.
 
